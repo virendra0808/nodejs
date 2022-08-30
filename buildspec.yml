@@ -1,0 +1,36 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 16
+    commands:
+      # Install dependencies needed for running tests
+      - npm install
+
+      # Upgrade AWS CLI to the latest version
+      - pip install --upgrade awscli
+  pre_build:
+    commands:
+      # Discover and run unit tests in the 'tests' directory
+      - npm start
+
+
+  # build:
+  #   commands:
+  #     - echo Running tests
+  #     - npm test
+  #     - echo Building and tagging Docker image
+  #     - export AWS_ACCESS_KEY_ID="ASIA4K66UBGYTHCNCFJ5"
+  #     - export AWS_SECRET_ACCESS_KEY="/TVdNaKuA6DE5QY0zYG2B70rkc167dDfpzOtfqw4"
+  #     - export AWS_SESSION_TOKEN="IQoJb3JpZ2luX2VjEHsaDmFwLXNvdXRoZWFzdC0xIkgwRgIhANpLAWfmySgzEKko5xio1LXEvexKCjVXXBKcVHR0BKYxAiEAzaOyb/dyba9w3OoCjrdMY4HcTRQsCkdGe6uLJq20EBkq9QII9P//////////ARAAGgw4NDgxODYwNTA5OTMiDEl9r28Sz7Wadck8DSrJAuK5wl6Dzy4pmL9Mg7UabS2kBJDrc3gyWPqKIdxZZjBGr0Zbjb3cU5SylMjFKvC1rs/9XNPTY/iFM6CeTVoLVsK7fF/HX+RBThKo3ZB2EOSnKn3tYvsmgfbP/m3144JNiSxbqAmC5XahWEyFurpLET3ST2gycU9pjA04pN3ycrJ3/rqVl17m0DwQZMUij1rue8MQGAH08BFZgRfgXI4nJ60UGJHa77emzBDo543cSZS5pidlS1yoDrNjfbywD7UH8MzRM1ER3pFreQbf59CeJ2KtaUYAvgAqyGYpWmWuR42RNf8wiTEgo2v8kMmsaNTE+DwMGOF1rZEezoSIWlF8O8igVm0Z8+noHTfYOa+elQ3T5YwiLBzMYNMJRWRtjT0YDlokfn7SzxcW2PeLV6FZ91f0qPVN7xzz3OShArgr18fgf0iey2dQbo06MJ/GqZgGOqYB2rlxofG+6ZaKTbK8UeiI8FB5o7G5bzRhRhwQhWmct7xyZOMLRP8VNNhL9dc5XwqPko9KymUxxN9QRu15t1YHuw8zvCyiQWFt/2dOa7+jUmVmct9839glyZ8vSIPw3aQf5LHNe3RLaX2VqJ22HcFdC6Pycr6pQeuoCQLmEHXnwo3jCpcqUwxd0C5iWkGMEEnkWIiiomcO5mBH5jXym2XlgddukwPxWw=="
+
+  #     - aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 848186050993.dkr.ecr.ap-southeast-1.amazonaws.com
+  #     - docker build -t admin-app-node .
+  #     - docker tag admin-app-node:latest 848186050993.dkr.ecr.ap-southeast-1.amazonaws.com/admin-app-node:latest
+
+
+  # post_build:
+  #   commands:
+  #     - echo Pushing to ECR
+  #     - docker push 848186050993.dkr.ecr.ap-southeast-1.amazonaws.com/admin-app-node:latest
